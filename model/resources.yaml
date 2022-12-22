@@ -1,0 +1,42 @@
+apiVersion: tfc_example.argo.cisco.com/v1
+kind: Resource
+metadata:
+  name: World
+  group: tfc_example.argo.cisco.com
+  version: v1
+spec:
+  pkey: spec.name
+  spec: 
+    type: v1.WorldSpec
+  apimethods:
+    - apimethod: GET
+    - apimethod: PUT
+    - apimethod: POST
+    - apimethod: DELETE
+---
+kind: Struct
+metadata:
+  name: WorldSpec
+  group: tfc_example.argo.cisco.com
+  version: v1
+spec:
+  props:
+    - prop: name
+      type: string
+    - prop: description
+      type: string
+---
+kind: ResourceHandler
+metadata:
+  name: WorldHandler
+spec:
+  resource: tfc_example.argo.cisco.com/v1.World
+  operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+  retryStrategy:
+    delay: 500
+  concurrencyKey: world
+  function: golang.cisco.com/examples/tfc/pkg/handlers.WorldHandler
+  specStatusDiscriminator: both

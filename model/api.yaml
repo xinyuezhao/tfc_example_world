@@ -1,0 +1,22 @@
+
+openapi: 3.0.2
+apiVersion: tfc_example.argo.cisco.com/v1
+kind: ApiDef
+metadata:
+  name: tfc_example
+  scope: deployment
+spec:
+  title: tfc_example
+  description: TBD
+  terms-url: https://example.org
+  contact:
+    name: TBD
+    url: https://example.org
+    email: tfc_example@example.org
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.1
+  servers:
+    - server: /
+      description: Insecure URL for tfc_example
